@@ -1,0 +1,26 @@
+# FastAPI and ASGI server
+fastapi==0.95.2
+uvicorn==0.22.0
+
+
+# PyTorch for model inference (CPU or GPU)
+torch==2.0.1
+
+# Hugging Face Transformers for model loading and inference
+transformers
+sentencepiece
+
+# Pydantic for data validation and schema definitions
+pydantic==1.10.7  
+
+numpy<2
+
+# Logging and utilities
+loguru==0.7.0  # Optional: For enhanced logging
+
+# File system utilities (if using cloud storage in the future)
+fsspec==2023.6.0  # Optional: For GCS or other cloud storage
+gcsfs==2023.6.0   # Optional: For Google Cloud Storage
+
+# Environment variable management
+python-dotenv==1.0.0  # Optional: For loading environment variables from a .env file
