@@ -49,6 +49,8 @@ docker run -p 7860:7860 --env-file .env qa-api
 ```
 
 ## Key Features
+- **Model Support**: : Currently supports only the `AlbertForQuestionAnswering model`.
+
 - **Lightweight Docker Image**: Models are downloaded at runtime, keeping the Docker image small and efficient. *(Currently supports a single model due to free hardware limitations on Hugging Face Spaces.)*
 - **Hugging Face Integration**: Uses the `transformers` library to load and run pre-trained QA models.
 - **Automated Model Download**: Models are automatically downloaded and cached locally if they don't already exist.
@@ -60,3 +62,7 @@ Once the application is running, you can access the interactive API documentatio
 http://localhost:7860/docs
 ```
 This provides an easy way to test the API endpoints and understand how to interact with the service.
+
+
+## Acknowledgements
+None of this would have been possible without the hard work by the `HuggingFace` team in developing the `Transformers` library.
