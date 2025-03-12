@@ -3,7 +3,7 @@ import logging
 from pathlib import Path
 from typing import Optional
 from pydantic import BaseModel
-from transformers import AutoTokenizer, AlbertForQuestionAnswering
+from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 import torch
 
 # Set up logging
@@ -36,7 +36,7 @@ class DataLocation(BaseModel):
                 tokenizer = AutoTokenizer.from_pretrained(
                     self.cloud_uri, token=AUTH_TOKEN
                 )
-                model = AlbertForQuestionAnswering.from_pretrained(
+                model = AutoModelForQuestionAnswering.from_pretrained(
                     self.cloud_uri, token=AUTH_TOKEN
                 )
                 # Save the model and tokenizer locally
@@ -71,7 +71,7 @@ class QAModel:
 
         # Load the tokenizer and model from the local path
         self.tokenizer = AutoTokenizer.from_pretrained(model_path)
-        self.model = AlbertForQuestionAnswering.from_pretrained(model_path).to(self.device)
+        self.model = AutoModelForQuestionAnswering.from_pretrained(model_path, return_dict=True).to(self.device)
         logger.info(f"Loaded QA model: {self.model_name}")
 
     def inference_qa(self, context: str, question: str):
