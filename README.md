@@ -1,4 +1,4 @@
-# QAModel
+# Template QAModel
 
 ## Project Structure
 ```
@@ -15,7 +15,7 @@ Dockerfile             # Docker configuration
 README.md              # Project documentation
 ```
 
-## Question-Answering (QA) API with FastAPI and Hugging Face
+## Template Question-Answering (QA) API with FastAPI and Hugging Face
 
 This project provides a FastAPI-based REST API for performing question-answering tasks using a pre-trained Hugging Face model. The API allows users to submit a context and a question, and it returns the answer extracted from the context.
 
