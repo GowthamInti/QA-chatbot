@@ -50,7 +50,7 @@ docker run -p 7860:7860 --env-file .env qa-api
 
 ## Key Features
 - **Model Support**: : Currently supports any QA model in HF based on the Auto class `AutoModelForQuestionAnswering`.
-- **Pretrained checkpoint**:  Path to the pretrained checkpoint has expects `HF_Username/repo_name` this has to be modified accordingly at  `model_name` config.py 
+- **Pretrained checkpoint**:  Path to the pretrained checkpoint has expects `HF_Username/repo_name` this has to be modified accordingly at  `qa_model_path` config.py 
 - **Lightweight Docker Image**: Models are downloaded at runtime, keeping the Docker image small and efficient. *(Currently supports a single model due to free hardware limitations on Hugging Face Spaces.)*
 - **Hugging Face Integration**: Uses the `transformers` library to load and run pre-trained QA models.
 - **Automated Model Download**: Models are automatically downloaded and cached locally if they don't already exist.
