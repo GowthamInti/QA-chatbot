@@ -1,24 +1,62 @@
----
-title: QAModel
-emoji: 👀
-colorFrom: indigo
-colorTo: purple
-sdk: docker
-pinned: false
-license: mit
-short_description: Demo project for  llm and fast api
----
+# QAModel
 
+## Project Structure
+```
+app/
+├── __init__.py
+├── config.py          # Configuration settings
+├── models.py          # QA model loading and inference
+├── schemas.py         # Pydantic schemas for input/output
+└── main.py            # FastAPI application
 
-Question-Answering (QA) API with FastAPI and Hugging Face
+_models/               # Directory for storing downloaded models
+requirements.txt       # Python dependencies
+Dockerfile             # Docker configuration
+README.md              # Project documentation
+```
+
+## Question-Answering (QA) API with FastAPI and Hugging Face
+
 This project provides a FastAPI-based REST API for performing question-answering tasks using a pre-trained Hugging Face model. The API allows users to submit a context and a question, and it returns the answer extracted from the context.
 
-Key Features
-Lightweight Docker Image: Models are downloaded at runtime, keeping the Docker image small and efficient. #At the mooment supports a single model due to free hardware limitations on the HF spaces
+## Installation and Setup
 
-Hugging Face Integration: Uses the transformers library to load and run pre-trained QA models.
+### Clone the Repository
+```sh
+git clone https://github.com/GowthamInti/QA-chatbot.git
+cd QA-chatbot
+```
 
-Automated Model Download: Models are automatically downloaded and cached locally if they don't already exist.
+### Install Dependencies
+```sh
+pip install -r requirements.txt
+```
 
-Swagger Documentation: Interactive API documentation is available at /docs.
+### Run the Application
+```sh
+python -m app.main
+```
 
+### Docker Setup
+#### Build the Docker Image
+```sh
+docker build -t qa-api .
+```
+
+#### Run the Docker Container
+```sh
+docker run -p 7860:7860 --env-file .env qa-api
+```
+
+## Key Features
+- **Lightweight Docker Image**: Models are downloaded at runtime, keeping the Docker image small and efficient. *(Currently supports a single model due to free hardware limitations on Hugging Face Spaces.)*
+- **Hugging Face Integration**: Uses the `transformers` library to load and run pre-trained QA models.
+- **Automated Model Download**: Models are automatically downloaded and cached locally if they don't already exist.
+- **Swagger Documentation**: Interactive API documentation is available at `/docs`.
+
+## API Documentation
+Once the application is running, you can access the interactive API documentation by visiting:
+```
+http://localhost:7860/docs
+```
+This provides an easy way to test the API endpoints and understand how to interact with the service.
