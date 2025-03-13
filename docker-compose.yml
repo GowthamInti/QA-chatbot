@@ -1,0 +1,47 @@
+# multi-container setup (FastAPI + Nginx) and resource limits for CPU and memory.
+
+version: "3.8"
+
+services:
+  # FastAPI Application
+  fastapi:
+    build:
+      context: .  # Path to the directory containing the Dockerfile
+      dockerfile: Dockerfile
+    container_name: fastapi
+    ports:
+      - "7860:7860"  # Expose FastAPI directly (optional, for debugging)
+    environment:
+      - AUTH_TOKEN=${AUTH_TOKEN}  # Hugging Face auth token from .env file
+    volumes:
+      - ./_models:/app/_models  # Persist downloaded models
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"  # Limit to 1 CPU core
+          memory: "512M"  # Limit to 512MB RAM
+    networks:
+      - app-network
+
+  # Nginx Reverse Proxy
+  nginx:
+    build:
+      context: .  # Path to the directory containing the Nginx Dockerfile
+      dockerfile: nginx.Dockerfile
+    container_name: nginx
+    ports:
+      - "80:80"  # Expose Nginx to the outside world
+    depends_on:
+      - fastapi  # Ensure FastAPI starts first
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"  # Limit to 0.5 CPU core
+          memory: "128M"  # Limit to 128MB RAM
+    networks:
+      - app-network
+
+# Shared Docker Network
+networks:
+  app-network:
+    driver: bridge
